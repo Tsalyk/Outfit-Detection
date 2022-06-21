@@ -6,7 +6,6 @@ Main goal of the project is to build a model, that can classify outfit in images
 ***
 
 ## Approach
-***
 
 ### Architecture
 Deep Learning and Convoulutional Neural Network is a primary part of the model. Neural Network architecture is following:
@@ -33,7 +32,6 @@ It contains *11385* images of different types of outfit.
 ***
 
 ## Usage
-***
 
 ### Python dependencies
 
@@ -75,7 +73,6 @@ cd ios && pod install && cd ../
 4. Push `execute`
 
 ## Running Applications
-***
 
 ### FastAPI & TF Serve
 
@@ -145,7 +142,6 @@ npm run ios
 ***
 
 ## Results
-***
 
 ### Evaluation
 The model was trained with *60* epochs. It performs pretty well with ***90%*** accuracy on the test set.
