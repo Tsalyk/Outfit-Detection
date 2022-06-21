@@ -27,7 +27,7 @@ To deploy a model was used [Google Cloud Platform](https://console.cloud.google.
 ***
 
 ### Data
-Load dataset from [Kaggle](https://www.kaggle.com/datasets/trolukovich/apparel-images-dataset) to launch the application.
+Load dataset from [Kaggle](https://www.kaggle.com/datasets/trolukovich/apparel-images-dataset) (not necessary to run API or mobile APP).
 
 It contains *11385* images of different types of outfit.
 ***
