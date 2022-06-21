@@ -1,11 +1,14 @@
 # Outfit-Detection
 ***
 
-## Aim
+### Aim
 Main goal of the project is to build a model, that can classify outfit in images. Next step is to share this model in public usage so that everybody can upload an image of the apparel and get the prediction.
 ***
 
 ## Approach
+***
+
+### Architecture
 Deep Learning and Convoulutional Neural Network is a primary part of the model. Neural Network architecture is following:
 
 **Resizing -> Rescailing -> Flip -> Rotation
@@ -14,10 +17,25 @@ Deep Learning and Convoulutional Neural Network is a primary part of the model. 
         -> Conv2D -> MaxPooling2D -> Conv2D -> MaxPooling2D
         -> Flatten -> FC RELU -> FC SOFTMAX**
         
-First 4 layers are responsible for data engineering and augmentation. Then there are 6 blocks of Convolution+Relu -> MaxPooling, Flatten layer, followed by Relu activation Fully Connected layer and, finally, Softmax activation Fully Connected layer. Last layer is $\mathbb{R}^{24}$, since there are 24 classes of outfit.
+First 4 layers are responsible for data engineering and augmentation. Then there are 6 blocks of Convolution+Relu -> MaxPooling, Flatten layer, followed by Relu activation Fully Connected layer and, finally, Softmax activation Fully Connected layer. Last layer is $\mathbb{R}^{24}$, since there are [24 classes of outfit](https://github.com/Tsalyk/Outfit-Detection/blob/main/outfits.py).
 ***
 
-## Python dependencies
+### Deployment
+To run API was used **[RestAPI](https://python-rest-framework.readthedocs.io/en/latest/#) & [TensorFlow Serving](https://www.tensorflow.org/tfx/guide/serving)**.
+
+To deploy a model was used [Google Cloud Platform](https://console.cloud.google.com/marketplace/product/thorn-technologies-public/sftp-gateway?project=thorn-technologies-public&gclid=Cj0KCQjw2MWVBhCQARIsAIjbwoPDr0JVE1PZBEv2QbLG2zrdv3eOROAWKYr4VmZ4W9OarkK6aGvlvUQaApFHEALw_wcB).
+***
+
+### Data
+Load dataset from [Kaggle](https://www.kaggle.com/datasets/trolukovich/apparel-images-dataset) to launch the application.
+
+It contains *11385* images of different types of outfit.
+***
+
+## Usage
+***
+
+### Python dependencies
 
 1. Install Python packages
 
@@ -27,5 +45,55 @@ pip3 install -r api/requirements.txt
 ```
 
 2. Install Tensorflow Serving ([Setup instructions](https://www.tensorflow.org/tfx/serving/setup))
+***
 
+### ReactJS dependencies
+
+```bash
+cd frontend
+npm install --from-lock-json
+npm audit fix
+```
+***
+
+### React-Native dependencies
+```bash
+cd mobile-app
+yarn install
+```
+
+  - Only for mac users
+```bash
+cd ios && pod install && cd ../
+```
+***
+
+## Running the API
+***
+
+### FastAPI & TF Serve
+
+1. Get inside `api` folder
+
+```bash
+cd api
+```
+
+2. Run the TF Serve (Update config file path below)
+
+```bash
+docker run -it -v /Users/markiian_tsalyk/Desktop/Clothes-Detection:/Outfit-Detection -p 8080:8080 --entrypoint /bin/bash tensorflow/serving
+ls -ltr Outfit-Detection
+tensorflow_model_server --rest_api_port=8080  --allow_version_labels_for_unavailable_models --model_config_file=/Outfit-Detection/models.config
+```
+
+3. Run the FastAPI Server using uvicorn
+   For this you can directly run it from main.py
+   OR you can run it from command prompt as shown below,
+
+```bash
+uvicorn main:app --reload --host 0.0.0.0
+```
+
+4. API is now running at `0.0.0.0:8080`
 ***
