@@ -68,7 +68,13 @@ cd ios && pod install && cd ../
 ```
 ***
 
-## Running the API
+### Postman
+1. Open [Postman](https://www.postman.com/downloads/)
+2. Use link for deployed function on GCP https://us-central1-clothes-detection-353914.cloudfunctions.net/predict
+3. Choose `file` in body section and upload your image
+4. Push `execute`
+
+## Running Applications
 ***
 
 ### FastAPI & TF Serve
@@ -82,13 +88,15 @@ cd api
 2. Run the TF Serve (Update config file path below)
 
 ```bash
-docker run -it -v /Users/markiian_tsalyk/Desktop/Clothes-Detection:/Outfit-Detection -p 8080:8080 --entrypoint /bin/bash tensorflow/serving
+docker run -it -v /path/to/Outfit-Detection:/Outfit-Detection -p 8080:8080 --entrypoint /bin/bash tensorflow/serving
 ls -ltr Outfit-Detection
 tensorflow_model_server --rest_api_port=8080  --allow_version_labels_for_unavailable_models --model_config_file=/Outfit-Detection/models.config
 ```
 
 3. Run the FastAPI Server using uvicorn
+
    For this you can directly run it from main.py
+   
    OR you can run it from command prompt as shown below,
 
 ```bash
@@ -97,3 +105,39 @@ uvicorn main:app --reload --host 0.0.0.0
 
 4. API is now running at `0.0.0.0:8080`
 ***
+
+### Frontend
+
+1. Get inside `api` folder
+
+```bash
+cd frontend
+```
+
+2. Run the frontend
+
+```bash
+npm run start
+```
+***
+
+### Mobile App
+
+1. Get inside `mobile-app` folder
+
+```bash
+cd mobile-app
+```
+
+2. Run the app (android/IOS)
+
+```bash
+npm run android
+```
+
+or
+
+```bash
+npm run ios
+```
+
