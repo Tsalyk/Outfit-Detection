@@ -85,7 +85,9 @@ cd ios && pod install && cd ../
 cd api
 ```
 
-2. Run the TF Serve (Update config file path below)
+2. Run [Docker](https://www.docker.com/products/docker-desktop/) daemon
+
+3. Run the TF Serve (Update config file path below)
 
 ```bash
 docker run -it -v /path/to/Outfit-Detection:/Outfit-Detection -p 8080:8080 --entrypoint /bin/bash tensorflow/serving
@@ -93,7 +95,7 @@ ls -ltr Outfit-Detection
 tensorflow_model_server --rest_api_port=8080  --allow_version_labels_for_unavailable_models --model_config_file=/Outfit-Detection/models.config
 ```
 
-3. Run the FastAPI Server using uvicorn
+4. Run the FastAPI Server using uvicorn
 
    For this you can directly run it from main.py
    
@@ -103,12 +105,12 @@ tensorflow_model_server --rest_api_port=8080  --allow_version_labels_for_unavail
 uvicorn main:app --reload --host 0.0.0.0
 ```
 
-4. API is now running at `0.0.0.0:8080`
+5. API is now running at `0.0.0.0:8080`
 ***
 
 ### Frontend
 
-1. Get inside `api` folder
+1. Get inside `frontend` folder
 
 ```bash
 cd frontend
@@ -140,4 +142,24 @@ or
 ```bash
 npm run ios
 ```
+***
 
+## Results
+***
+
+### Evaluation
+The model was trained with *60* epochs. It performs pretty well with ***90%*** accuracy on the test set.
+***
+
+### Web-app
+<img width="1440" alt="Screenshot 2022-06-21 at 16 22 37" src="https://user-images.githubusercontent.com/73395389/174810118-8b0dccae-05fc-43d6-8aac-57cfb6cd2601.png">
+***
+
+### Mobile-app
+<img width="250" height="500" alt="Screenshot 2022-06-21 at 13 56 38" src="https://user-images.githubusercontent.com/73395389/174806243-4a990d3e-5302-4203-adf9-657cf594d1c5.png">
+***
+
+## Credits
+© [Markiian Tsalyk](https://www.linkedin.com/in/markiian-tsalyk-193758224/)
+
+[License](https://github.com/Tsalyk/Outfit-Detection/blob/main/LICENSE)
